@@ -2,6 +2,6 @@
 
 Use satellite data to track the human footprint in the Amazon rainforest.
 
-High Level Requirements: Python, OpenCV, Tensorflow
+High level requirements: Python, OpenCV, TensorFlow
 
 https://www.kaggle.com/c/planet-understanding-the-amazon-from-space
