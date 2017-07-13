@@ -4,7 +4,6 @@ import time
 import numpy as np
 import pandas as pd
 from keras import backend
-# from keras.optimizers import SGD
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras import optimizers
 from keras.models import Sequential
@@ -14,48 +13,6 @@ from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten, BatchNor
 def main():
     localtime = time.asctime(time.localtime(time.time()))
     print(localtime)
-    # model = Sequential()
-    # model.add(
-    #     Convolution2D(64, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(64, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-    # model.add(
-    #     Convolution2D(128, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(128, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-    # model.add(
-    #     Convolution2D(256, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(256, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(256, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-    # model.add(
-    #     Convolution2D(512, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(512, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(512, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-    # model.add(
-    #     Convolution2D(512, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(512, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(
-    #     Convolution2D(512, kernel_size=(3, 3), padding='same', input_shape=(224, 224, 3), strides=1, activation='relu'))
-    # model.add(MaxPool2D(pool_size=(2, 2), strides=2))
-    # model.add(Flatten())
-    # model.add(Dense(4096, activation='relu'))
-    # model.add(Dense(4096, activation='relu'))
-    # model.add(Dense(1000, activation='relu'))
-    # model.add(Dropout(0.4))
-    # model.add(Dense(17, activation='sigmoid'))
-    # sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-    # model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
-    # print(model.summary())
-
     model = Sequential()
     model.add(BatchNormalization(input_shape=(64, 64, 3)))
     model.add(Conv2D(32, kernel_size=(3, 3), padding='same', activation='relu'))
@@ -79,7 +36,6 @@ def main():
     model.add(BatchNormalization())
     model.add(Dropout(0.5))
     model.add(Dense(17, activation='sigmoid'))
-
     label_dict = {}
     train_data = []
     train_label = []
@@ -114,7 +70,6 @@ def main():
         for y in x:
             lst[y] = 1
         train_label_values.append(lst)
-
     epochs_arr = [20, 5, 5]
     learn_rates = [0.001, 0.0001, 0.00001]
     for learn_rate, epochs in zip(learn_rates, epochs_arr):
@@ -124,16 +79,11 @@ def main():
                      ModelCheckpoint('model_checkpoint.h5', monitor='val_loss', save_best_only=True, verbose=2)]
         model.fit(x=train_data, y=train_label_values, batch_size=128, verbose=2, epochs=epochs,
                   callbacks=callbacks, shuffle=True)
-
-    # model.fit(train_data, train_label_values, batch_size=100, epochs=10, shuffle=True)
     model.save('mymodel.h5')
     del model
     backend.clear_session()
     localtime = time.asctime(time.localtime(time.time()))
     print(localtime)
-    # returnedmodel = load_model('mymodel.h5')
-    # val = returnedmodel.predict_proba(train_data, batch_size=100)
-    # print(val)
 
 
 if __name__ == '__main__':

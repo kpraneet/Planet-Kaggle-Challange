@@ -127,7 +127,7 @@ def main():
     print(localtime)
     outputlist = []
     filecount = 0
-    explore_path = "/Users/praneet/Documents/Kaggle/Amazon/train"
+    explore_path = "/Users/praneet/Documents/Kaggle/Amazon/test"
     classifier = SKCompat(learn.Estimator(model_fn=train, model_dir="/Users/praneet/Downloads/model"))
     for root, dirs, files in os.walk(explore_path):
         for file_name in files:
@@ -143,7 +143,7 @@ def main():
                 eval_data.append(img)
                 eval_data = np.array(eval_data, dtype=np.float32)/255.
                 predictions = classifier.predict(x=eval_data)
-                print(file_name, predictions)
+                print(file_name)
                 lst.append(file_name)
                 for x in predictions['probabilities']:
                     for y in x:

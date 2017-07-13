@@ -229,7 +229,7 @@ def main():
         x=train_data_one,
         y=train_label_one,
         batch_size=100,
-        steps=250,
+        steps=4000,
         monitors=[logging_hook])
     localtime = time.asctime(time.localtime(time.time()))
     print(localtime)
