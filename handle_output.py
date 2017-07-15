@@ -5,9 +5,9 @@ def main():
     labels = ['agriculture', 'artisinal_mine', 'bare_ground', 'blooming', 'blow_down', 'clear',
               'cloudy', 'conventional_mine', 'cultivation', 'habitation', 'haze', 'partly_cloudy',
               'primary', 'road', 'selective_logging', 'slash_burn', 'water']
-    # threshold = [0.11, 0.01, 0.013, 0.0062, 0.0023, 0.16, 0.07, 0.004, 0.072, 0.046, 0.067, 0.102, 0.179, 0.087,
-    # 0.0072, 0.0068, 0.073]
-    # threshold = [0.03] * 17
+    # threshold = [0.013, 0.03, 0.03, 0.0305, 0.045, 0.0185, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03, 0.03,
+    #              0.03, 0.03, 0.03]
+    threshold = [0.03] * 17
     output_list = list()
     output_list.append(['image_name', 'tags'])
     df = pd.read_csv('output_actual.csv', header=None, dtype=object)

@@ -27,7 +27,7 @@ def main():
         label.append(tmp)
     best = 0
     best_score = -1
-    totry = np.arange(0, 1, 0.00005)
+    totry = np.arange(0, 1, 0.005)
     for t in totry:
         pred = []
         for x in df_train_predictions[:, 1:]:
